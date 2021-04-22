@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Cherry Kernel - by @AkiraNoSushi & @SimplyJoel
+kernel.string=Cherry Kernel (NVVersion)
 do.devicecheck=1
 do.modules=1
 do.systemless=0
@@ -40,9 +40,7 @@ mount -o rw,remount /system
 ui_print "Patching system's build.prop..."
 # These are lmkd defaults
 patch_prop /system/build.prop "ro.lmk.kill_heaviest_task" "true"
-patch_prop /system/build.prop "ro.config.low_ram" "false"
-patch_prop /system/build.prop "ro.lmk.use_minfree_levels" "false"
-patch_prop /system/build.prop "ro.lmk.use_new_strategy" "true"
-patch_prop /system/build.prop "ro.lmk.log_stats" "true"
+patch_prop /system/build.prop "ro.lmk.use_minfree_levels" "true"
 patch_prop /system/build.prop "ro.lmk.use_psi" "true"
+patch_prop /system/build.prop "ro.lmk.kill_timeout_ms" "100"
 ## end install
