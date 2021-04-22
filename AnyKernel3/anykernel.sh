@@ -30,5 +30,16 @@ ramdisk_compression=auto;
 split_boot;
 flash_boot;
 flash_dtbo;
+
+# lmkd props
+ui_print "Mounting /system to patch build.prop..."
+mount -o rw,remount /system
+ui_print "Patching system's build.prop..."
+# These are lmkd defaults
+patch_prop /system/build.prop "ro.lmk.kill_heaviest_task" "true"
+patch_prop /system/build.prop "ro.lmk.use_minfree_levels" "true"
+patch_prop /system/build.prop "ro.lmk.use_psi" "true"
+patch_prop /system/build.prop "ro.lmk.kill_timeout_ms" "100"
+## end install
 ## end install
 
