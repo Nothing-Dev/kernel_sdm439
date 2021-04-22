@@ -17,7 +17,7 @@ make -j$(nproc --all) O=out ARCH=arm64 \
 # Build flashable zip
 cp out/arch/arm64/boot/dtbo.img AnyKernel3/
 cp out/arch/arm64/boot/Image.gz-dtb AnyKernel3/
-zipfile="./out/CherryKernel_$(date +%Y%m%d-%H%M).zip"
+zipfile="./out/NVKernel_$(date +%Y%m%d-%H%M).zip"
 7z a -mm=Deflate -mfb=258 -mpass=15 -r $zipfile ./AnyKernel3/*
 
 # Send flashable zip to Telegram channel

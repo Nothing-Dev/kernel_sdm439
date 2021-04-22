@@ -1,12 +1,12 @@
 kind: pipeline
 type: docker
-name: CherryKernel
+name: CherryKernel NV Version
 
 clone:
   depth: 1
 
 steps:
-- name: Building CherryKernel
+- name: Building Kernel
   image: kernelci/build-base:latest
   environment:
     TELEGRAM_BOT_TOKEN:
