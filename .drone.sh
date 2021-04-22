@@ -29,5 +29,6 @@ FILE_CAPTION=$(cat << EOL
 *Branch:* $(escape $DRONE_BRANCH)
 *Commit:* [$(echo $DRONE_COMMIT | cut -c -7)]($(escape $DRONE_COMMIT_LINK))
 EOL
+Enjoy it baby!
 )
 curl -F "document=@${zipfile}" --form-string "caption=${FILE_CAPTION}" "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument?chat_id=${TELEGRAM_CHAT_ID}&parse_mode=MarkdownV2"
