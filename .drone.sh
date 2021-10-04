@@ -1,18 +1,23 @@
 #!/bin/bash
 
 # Setting up build environment...
-apt-get install unzip p7zip-full curl python2 -yq
+apt-get install unzip p7zip-full curl python2 binutils-aarch64-linux-gnu wget binutils-aarch64-linux-gnu binutils-arm-linux-gnueabi libtinfo5 -yq
 # We download repo as zip file because it's faster than cloning it with git
-wget -nv https://github.com/kdrag0n/proton-clang/archive/master.zip
-unzip master.zip
+wget https://github.com/ThankYouMario/proprietary_vendor_qcom_sdclang/archive/refs/heads/ruby-12.zip
+unzip -qq ruby-12.zip
 
 # Build
-make O=out ARCH=arm64 cherry-pine_defconfig
-PATH="$(pwd)/proton-clang-master/bin:${PATH}"
+make O=out ARCH=arm64 cherry-sdm439_defconfig
+PATH="$(pwd)/proprietary_vendor_qcom_sdclang-ruby-12/bin:${PATH}"
 make -j$(nproc --all) O=out ARCH=arm64 \
                       CC=clang \
                       CROSS_COMPILE=aarch64-linux-gnu- \
-                      CROSS_COMPILE_ARM32=arm-linux-gnueabi-
+                      CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
+                      AR=llvm-ar \
+                      NM=llvm-nm \
+                      OBJCOPY=llvm-objcopy \
+                      OBJDUMP=llvm-objdump \
+                      STRIP=llvm-strip \
 
 # Build flashable zip
 cp out/arch/arm64/boot/dtbo.img AnyKernel3/
