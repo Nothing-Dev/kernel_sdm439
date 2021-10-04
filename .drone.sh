@@ -7,7 +7,7 @@ wget https://github.com/ThankYouMario/proprietary_vendor_qcom_sdclang/archive/re
 unzip -qq ruby-12.zip
 
 # Build
-make O=out ARCH=arm64 cherry-sdm439_defconfig
+make O=out ARCH=arm64 cherry-pine_defconfig
 PATH="$(pwd)/proprietary_vendor_qcom_sdclang-ruby-12/bin:${PATH}"
 make -j$(nproc --all) O=out ARCH=arm64 \
                       CC=clang \
